@@ -1,0 +1,14 @@
+branch of conditions (if-elif-else statements)
+
+elif: else if abbreviation
+
+if the if condition is false, the elif is used to confirm next conditions and the process is conducted when true conditions is finded.
+ex)
+if condition1:
+
+elif condision2:
+
+else:
+
+
+it is normal in this lesson. but, i lost the elif statement a littele.
