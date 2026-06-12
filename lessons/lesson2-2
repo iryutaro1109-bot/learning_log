@@ -1,0 +1,18 @@
+From now on, i will write to English. Because it is difficult to cswitch between alphabet and japanese.
+
+if-else statements
+
+if condition:
+when this is true
+else:
+when this is false
+
+ternary operator
+value1 if condition else value2
+condition: if value1 is true, value1 is disided. false, value2 is disided.
+
+ex) num=int(input("please input value"))
+    result="this value is plus" if num>0 else "this value is not plus"
+    print(result)
+
+i have used matlab before. so, it is easy to use if-else statements.
