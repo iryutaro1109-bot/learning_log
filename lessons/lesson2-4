@@ -1,0 +1,12 @@
+match statements (pattern matching)
+this can write branch of process acoding to some conditions
+
+match variable:
+ cace value1:
+     process1
+ case value2:
+     process2
+ case_:
+    defolout process (no suted)
+
+i understand this lesson well
