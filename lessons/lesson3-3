@@ -1,0 +1,6 @@
+scoop: range of vaild variable and function
+local scoop: in the function
+global scoop: out of function
+if you change variable in the function, you need use global kye word
+
+after creating def function, i have to use function.
