@@ -1,0 +1,8 @@
+lambda function
+lambda argument: formal
+ex)
+check_even_odd = lambda x: '偶数' if x % 2 == 0 else '奇数' # 三項演算子を用いた処理をもつ無名関数の定義
+print(check_even_odd(10))  # 結果: 偶数
+print(check_even_odd(7))   # 結果: 奇数
+
+i understand well
