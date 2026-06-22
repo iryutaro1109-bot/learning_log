@@ -1,0 +1,5 @@
+method
+
+append ⇒add the new element in the last list only one element
+extend ⇒add the  new all elements in the list
+insert ⇒add the new element in the position 
