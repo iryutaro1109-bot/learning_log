@@ -1,0 +1,28 @@
+リストの内包表記 新しいリストを一行で生成できる記法
+新しい変数 = [処理 ループ内容]	# リスト内包表記の構文
+ex)
+numbers = [1, 2, 3, 4, 5]	# 既存リストを作成
+squared_numbers = [number * 2 for number in numbers]	# 内包表記で新リストを作成
+	# 新しい変数 = [処理 ループ内容]
+  
+print(squared_numbers)	# 完成した新リストを出力
+
+
+条件付きリストの内包表記
+新しい変数 = [処理 ループ内容 条件]
+numbers = [1, 2, 3, 4, 5, 6]
+even_numbers = [number for number in numbers if number % 2 == 0]
+ # 新しい変数 = [処理 ループ内容 条件]
+
+print(even_numbers)
+
+
+二重ループを使ったリストの内包表記
+matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]] # 2次元リスト
+flattened = [num for row in matrix for num in row]
+	# [処理（num） 外側のfor（rowをmatrixから順に取り出す） 内側のfor（numをrowから順に取り出す）]
+	# [処理（変数num） ループ内容（1週目[1, 2, 3]） 条件（変数numに1, 2, 3を順に代入）]
+	# [処理（変数num） ループ内容（2周目[4, 5, 6]） 条件（変数numに4, 5, 6を順に代入）]
+	# [処理（変数num） ループ内容（3周目[7, 8, 9]） 条件（変数numに7, 8, 9を順に代入）]
+
+print(flattened)
