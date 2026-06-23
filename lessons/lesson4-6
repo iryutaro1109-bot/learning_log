@@ -1,0 +1,13 @@
+リストのループ処理
+for 要素 in リスト:
+    処理内容
+
+ex)
+# 数値のリストを定義
+numbers = [1, 2, 3, 4, 5]
+
+# 各数値の2乗を出力
+for number in numbers:		# リストnumbersの要素を順番に変数numberに代入し
+    square = number ** 2
+    print(f"{number}の2乗は{square}です")
+
