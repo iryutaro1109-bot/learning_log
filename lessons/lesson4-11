@@ -1,0 +1,37 @@
+辞書 キーとそれに対応する値を組み合わせて格納するデータ構造 順序に関係なくキーを使用して値にアクセスできる
+
+要素の追加
+person = { 'name': 'Alice', 'age': 30, 'city': 'Tokyo' }
+
+# 職業を追加
+person['job'] = 'Engineer' # キー：job、値：Engineerとして辞書登録
+print(person)
+
+要素の削除
+person = { 'name': 'Alice', 'age': 30, 'city': 'Tokyo', 'job': 'Engineer' }
+
+# キー 'age' の要素を削除
+del person['age']
+
+# 'city' キーの値を取得しながら削除
+city = person.pop('city')
+print(person)
+print(city)
+
+要素の更新
+person = { 'name': 'Alice', 'job': 'Engineer' }
+
+# キー 'name' の値を更新
+person['name'] = 'Bob'
+print(person)
+
+辞書の中身をループ処理
+people = {
+    'Alice': {'age': 30, 'city': 'Tokyo'},
+    'Bob': {'age': 25, 'city': 'Osaka'},
+    'Charlie': {'age': 35, 'city': 'Nagoya'}
+}
+
+# 辞書の中身をループ処理で表示
+for name, info in people.items():	# ２つの変数に、キーと値をそれぞれ順次代入
+    print(f"{name} is {info['age']} years old and lives in {info['city']}.")
