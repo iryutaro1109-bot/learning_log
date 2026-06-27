@@ -1,0 +1,25 @@
+辞書のループ処理方法
+keys() 辞書のすべてのキーを取得
+values() 辞書のすべての値を取得
+items() 辞書のキーと値のペアを同時に取得
+ex)
+# 辞書を定義
+student_scores = {
+    "Alice": 85,
+    "Bob": 92,
+    "Charlie": 78
+}
+
+# keys() を使ってキー（名前）だけをループ処理
+for name in student_scores.keys():
+    print(f"学生の名前: {name}")
+
+# values() を使って値（スコア）だけをループ処理
+for score in student_scores.values():
+    print(f"スコア: {score}")
+
+# items() を使ってキーと値のペアをループ処理
+for name, score in student_scores.items():
+    print(f"{name} のスコアは {score} 点です")
+
+Ok!!
