@@ -1,0 +1,19 @@
+辞書の内包表記 
+{キー式: 値式 for 変数 in 反復 if 条件} 
+new_dictionary = {new_key: new_value for key, value in dictionary.items()}
+新しい辞書 = {新しいキー: 新しい値 for 元のキー, 元の値 in 元の辞書.items()}
+
+新しい辞書 = {新しいキー: 新しい値 for 元のキー, 元の値 in 元の辞書.items() if 条件}
+
+zip()関数 2つ以上のリストを同時にループ処理する際に便利な関数で、それぞれのリストの要素をペアにしてタプルを生成
+
+names = ["山田", "佐藤", "鈴木"]	# リストの定義
+scores = [85, 92, 78]			 # リストの定義
+
+# zip() を使って、名前とスコアをペアにし、辞書の内包表記で辞書を作成
+student_scores = {name: score for name, score in zip(names, scores)}
+
+print(student_scores)  # {'山田': 85, '佐藤': 92, '鈴木': 78}
+
+
+Ok!!
