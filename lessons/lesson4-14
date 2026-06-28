@@ -27,3 +27,7 @@ print(f"積集合: {intersection_set}")  # {'バナナ'}
 # 差集合
 difference_set = set1 - set2
 print(f"差集合: {difference_set}")  # {'りんご', 'みかん'}
+
+random.sample 重複なしで指定した数の要素をランダムに選択
+
+Ok!!
