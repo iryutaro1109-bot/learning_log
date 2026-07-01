@@ -1,0 +1,37 @@
+継承 親クラスの属性・メソッドを子クラスに受け継ぎ、共通処理をまとめつつ“差分だけ”を追加・変更できる仕組み
+class 親クラス名:
+  	# 継承させたい属性
+
+class 子クラス名(親クラス名):
+  	# 子クラスの独自属性
+# 親クラスの定義
+class Animal:	# Animalクラスを定義（親クラス）
+    def __init__(self, name):	# コンストラクタの定義
+        self.name = name
+    def speak(self):	# 継承させたいメソッド speak の定義
+        print(f"{self.name}が吠えています")
+
+# 子クラスの定義
+class Dog(Animal):	# Animalクラスを継承したDogクラスを定義
+    # 親クラスのコンストラクタを使用できるため、ここでは定義しない
+    def run(self):	# このクラスの独自メソッド run の定義
+        print(f"{self.name}が走っています")
+        
+class Cat(Animal):		# Animalクラスを継承したCaクラスを定義
+    def sleep(self):	# このクラスの独自メソッド sleep の定義
+        print(f"{self.name}が眠っています")
+
+# インスタンス生成
+dog = Dog("ポチ")	  # 引数ポチを渡してインスタンス生成
+dog.speak()			# 親クラスのメソッドを呼び出し
+dog.run()			# 子クラスの独自メソッドを呼び出し
+cat = Cat("ミケ")	  # 引数ミケを渡してインスタンス生成
+cat.speak()			# 親クラスのメソッドを呼び出し
+cat.sleep()			# 子クラスの独自メソッドを呼び出し
+
+super()関数
+子クラスにコンストラクタを指定
+class Dog(Animal):						# Animalクラスを継承したDogクラスを定義
+    def __init__(self, name, breed):	# 子クラス独自の引数を追加したコンストラクタ
+        super().__init__(name)			# 親クラスのコンストラクタを呼び出す
+        self.breed = breed				# 子クラス独自の属性を追加
