@@ -1,0 +1,41 @@
+property デコレーター インスタンスメソッドを読み取り専用の属性のように見せるための仕組み
+class Person:
+    def __init__(self, name):
+        self._name = name  # 慣習的にプライベートとみなす属性
+
+    @property		# @propertyデコレーターの使用宣言
+    def name(self): # name属性として振る舞うゲッターメソッドの定義
+        return self._name
+
+p = Person("Alice")
+print(p.name)  # ← 属性のように見えるが、メソッド name() が呼び出される
+
+プロパティ名.setter デコレーター プロパティに値を代入可能にするためには、ゲッターと対になるセッターを定義
+@name.setter		   # ゲッターと同じ名前を使う必要がある
+    def name(self, value): # name属性として振る舞うセッターメソッドの定義
+        self._name = value
+
+p.name = "Bob"  # セッターメソッド name() が呼び出される
+
+class Person:
+    def __init__(self, name):
+        self._name = name  # アンダースコアを付けた、慣習的にプライベートな属性
+
+    # name属性のゲッター
+    @property			　 # propertyデコレーターの使用宣言
+    def name(self):		　 # ゲッターメソッドの定義（name属性として振る舞う）
+        return self._name　# 呼び出されたら、プライベート属性を返す
+
+    # name属性のセッター
+    @name.setter		   # プロパティ名.setter	デコレーターの使用宣言
+    def name(self, value): # セッターメソッドの定義（name属性に値を設定）
+        if not isinstance(value, str): # 値が文字列であることを検証
+            raise ValueError("名前は文字列でなければなりません")
+        self._name = value # 呼び出されたら、プライベート属性を変更
+
+# 使用例
+p = Person("Alice")
+print(p.name)  # pオブジェクトのname属性を出力（メソッドを使用しない）
+
+p.name = "Bob" # pオブジェクトのname属性に値を再代入（メソッドを使用しない）
+print(p.name)  # pオブジェクトのname属性を出力（メソッドを使用しない）
