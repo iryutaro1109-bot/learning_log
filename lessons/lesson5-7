@@ -1,0 +1,17 @@
+静的メソッド @staticmethod
+クラスやそのインスタンスがなくても呼び出すことができる
+class MathUtility:		# MathUtilityクラスの定義
+    @staticmethod		# 静的メソッドであることを表すデコレーター
+    def multiply(x, y):	# 静的メソッドmultiplyの定義
+        return x * y
+
+    @staticmethod		# 静的メソッドであることを表すデコレーター
+    def square(number): # 静的メソッドsquarの定義
+        return number ** 2
+
+# インスタンス化せずにメソッド呼出し
+result1 = MathUtility.multiply(10, 5)
+result2 = MathUtility.square(7)
+
+print(result1)  # 出力：50
+print(result2)  # 出力：49
