@@ -1,0 +1,18 @@
+メソッドのオーバーライド 親クラスで定義されたメソッドを子クラスで再定義する機能
+class Animal:			# Animalクラスを定義
+    def sound(self):	# soundメソッドを定義
+        print("動物が鳴いています")
+
+class Dog(Animal):			# Animalクラスを継承したDogクラスを定義
+    def sound_dog(self):	# sound_dogメソッドを定義
+        print("ワンワン！")
+class Cat(Animal):			# Animalクラスを継承したCatクラスを定義
+    def sound(self):		# オーバーライド（親クラス内のメソッドと同名のメソッドを定義）
+        print("ニャーニャー")
+
+dog = Dog()		# インスタンス生成
+dog.sound()		# 親クラスのメソッドを呼び出し
+dog.sound_dog() # 子クラスのメソッドを呼び出し
+cat = Cat()		# インスタンス生成
+cat.sound()		# soundメソッドは子クラス側でオーバーライド（上書き）されている
+				# 出力: ニャーニャー
