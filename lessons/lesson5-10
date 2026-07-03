@@ -1,0 +1,21 @@
+ミックスイン 他のクラスに特定の機能を付加するための仕組みで、単独では完全なクラスとして使用されない補助的なクラス
+class LoggingMixin:     # ミックスインクラスの定義
+    def log(self, message):
+        print(f"[LOG]: {message}")
+
+class ValidationMixin:  # ミックスインクラスの定義
+    def validate(self, data):
+        if isinstance(data, dict):
+            print("データが有効です")
+        else:
+            print("無効なデータです")
+
+# メインクラス
+class DataProcessor(LoggingMixin, ValidationMixin): # 二つのクラスをミックスイン
+    def process(self, data):
+        self.validate(data)
+        self.log("データ処理を開始しました")
+
+# 使用例
+processor = DataProcessor()
+processor.process({"name": "Python"})
