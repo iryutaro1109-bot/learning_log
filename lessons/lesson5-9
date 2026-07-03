@@ -1,0 +1,39 @@
+抽象クラス 直接インスタンス化されることを想定しない基底クラス（継承されることを前提としたクラス）
+abcモジュールに含まれる ABCクラス と @abstractmethodデコレーター
+
+from abc import ABC, abstractmethod # abcモジュールからABCクラスとabstractmethodデコレータをインポート
+class クラス名(ABC):		 # ABCクラスを継承した抽象クラスAnimalを定義
+    @abstractmethod			# 抽象メソッドであることを表すデコレーター
+    def メソッド名(self):	# 抽象メソッド（必ずオーバーライドされないといけない）
+ex)
+from abc import ABC, abstractmethod	# abc関連のモジュールのインポート
+
+class Animal(ABC):		# 抽象クラスの定義
+    @abstractmethod		# デコレーター
+    def speak(self):	# 抽象メソッドの定義
+        pass
+    @abstractmethod		# デコレーター
+    def move(self):		# 抽象メソッドの定義
+        pass
+
+class Dog(Animal):		# Animalクラスを継承したDogクラスの定義
+    def speak(self):	# 抽象メソッドの実装 ＆ オーバーライド
+        return "Woof!"
+    def move(self):		# 抽象メソッドの実装 ＆ オーバーライド
+        return "Runs on four legs"
+
+class Bird(Animal):		# Animalクラスを継承したBirdクラスの定義
+    def speak(self):	# 抽象メソッドの実装 ＆ オーバーライド
+        return "Chirp!"
+    def move(self):		# 抽象メソッドの実装 ＆ オーバーライド
+        return "Flies in the sky"
+
+dog = Dog()			# インスタンス生成
+bird = Bird()		# インスタンス生成
+
+print(dog.speak())	# Woof!
+print(dog.move())	# Runs on four legs
+print(bird.speak())	# Chirp!
+print(bird.move())	# Flies in the sky
+
+# 二つの子クラスは同じ抽象クラスを継承したが、出力はクラスごとに異なる
