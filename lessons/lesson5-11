@@ -1,0 +1,14 @@
+ dataclassesモジュール データを効率的に格納するためのクラスを簡潔に定義すること
+
+from dataclasses import dataclass # dataclassesモジュールのインポート
+
+@dataclass		# データクラスであることを表すデコレーター
+class Employee:	# データクラスの定義
+    name: str
+    age: int
+    position: str
+
+# インスタンス作成。コンストラクタは @dataclass により自動生成される
+employee = Employee(name="Alice", age=30, position="Engineer")
+# インスタンスの内容を表示。__repr__ メソッドが自動生成されているので整形された文字列が出力される
+print(employee)
