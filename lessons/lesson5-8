@@ -1,0 +1,18 @@
+モジュール Pythonコードを整理して再利用可能な単位としてまとめたもの
+import math	# mathモジュールのインポート
+
+# モジュールの関数を使う
+print(math.sqrt(16)) # mathモジュール内で定義されたsqrt()関数を使用
+					 # 出力: 4.0
+from math import sqrt # mathモジュールのsqrt関数をインポート
+
+print(sqrt(25))  # 出力: 5.0
+
+自作のモジュール 
+def say_hello(name): # say_hello関数の定義
+    return f"Hello, {name}!"
+
+import greetings # 自作モジュールファイルのインポート
+
+message = greetings.say_hello("Alice") # greetingsモジュールのsay_hello関数を呼び出し
+print(message)   # 出力: Hello, Alice!
