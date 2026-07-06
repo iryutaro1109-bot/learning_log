@@ -1,0 +1,55 @@
+import requests
+from bs4 import BeautifulSoup
+from pymongo import MongoClient
+
+
+##ページのhtmlからページの全件数をスクレイピングして取得
+url_get = "https://www.recall.caa.go.jp/result/index.php?screenkbn=01&category=2"
+html = requests.get(url_get)
+bsObj = BeautifulSoup(html.text,"html.parser")
+for link in bsObj.findAll("p"):
+    text = str(link.get_text())
+    if "件中" in text:
+        page = text.split("件中")[0]
+
+
+##欲しい情報が含まれるタグをみつけてスクレイピングしてmongoDBに保存する形式に整形
+url_post = "https://www.recall.caa.go.jp/result/index.php"
+payload = {'search':'特定メーカーの名前', 'category':'2','screenkbn':'01','viewCountdden':page}
+html = requests.post(url_post, data=payload)
+bsObj = BeautifulSoup(html.text,"html.parser")
+for link in bsObj.findAll("tr"):
+    i = 0
+    title = ""
+    publicationDate = ""
+    startDate = ""
+    url = ""
+    # tdタグ
+    for link_info in link.findAll("td"):
+        a = link_info.findAll("a")
+        link = str(link_info.findAll("p"))
+        link_array = link.split("\"")
+        # URLの取得
+        if len(link_array) > 1:
+            url = "https://www.recall.caa.go.jp" + link_array[1]
+        text = link_info.get_text()
+        # 件名の取得
+        if i == 2:
+            title = str(text)
+        # 掲載日の取得
+        if i == 3:
+            publicationDate = text
+        # 対応開始日の取得
+        if i == 4:
+            startDate = text
+        i += 1
+    # mongoDBに保存する形式に整形
+    data = {"title":title, "publicationDate":publicationDate, "startDate":startDate, "url":url}
+    save_data(data)
+
+##mongoDBに保存
+def save_data(data):
+    client = MongoClient('localhost', 27017)
+    db = client.db
+    co = db.recall_info
+    co.insert(data)
