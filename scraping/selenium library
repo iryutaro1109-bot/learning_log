@@ -1,0 +1,70 @@
+##ウェブページのHTMLデータをダウンロード
+import requests
+url = "https://example.com"
+response = requests.get(url)
+html = response.text
+
+##ダウンロードしたHTMLデータを解析し、必要な要素を抽出
+from bs4　import BeautifulSoup
+soup = BeautifulSoup(html, "html.parser")
+title = soup.find("h1").text
+
+
+##javascriptが動作するサイト（ヘッドレスモードで実施）
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+
+# Chromeドライバのパスとオプションを設定
+chrome_options = Options()
+chrome_options.add_argument('--headless')  # ヘッドレスモードで起動
+
+# Chromeドライバを起動
+driver = webdriver.Chrome(options=chrome_options)
+
+# 指定したURLのページを開く
+url = '[https://example.com](https://example.com)'
+driver.get(url)
+
+# ページのソースコードを取得
+html = driver.page_source
+
+# ドライバを終了
+driver.quit()
+
+##スクロールと抽出
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.keys import Keys
+import time
+# Chromeドライバの設定と起動
+# ページを開く
+# ページをスクロールしてデータを読み込む
+SCROLL_PAUSE_TIME = 2  # スクロールの待機時間
+scroll_count = 3  # スクロール回数
+# ページの高さを取得
+last_height = driver.execute_script('return document.body.scrollHeight')
+# スクロールを繰り返す
+for _ in range(scroll_count):
+    # ページをスクロール
+    driver.execute_script('window.scrollTo(0, document.body.scrollHeight);')
+    # ページが読み込まれるまで待機
+    time.sleep(SCROLL_PAUSE_TIME)
+    # 新しい高さを取得
+    new_height = driver.execute_script('return document.body.scrollHeight')
+    # 高さが変わっていなければ終了
+    if new_height == last_height:
+        break
+    last_height = new_height
+# スクロール後のページのソースコードを取得
+html = driver.page_source
+# ドライバを終了
+driver.quit()
+
+
+##ページの解析、データ抽出
+# --- 後半の書き換え ---
+soup = BeautifulSoup(html, 'html.parser')
+# テストとして、ページ内にある「h1」タグ（大見出し）を探す
+titles = soup.find_all('h1')
+for title in titles:
+    print("見つけたタイトル:", title.text)
