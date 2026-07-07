@@ -1,0 +1,23 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+
+# Selenium WebDriverのセットアップ
+service = Service(ChromeDriverManager().install())
+driver = webdriver.Chrome(service=service)
+
+try:
+    # Wikipediaのメインページにアクセス
+    driver.get('https://en.wikipedia.org/wiki/Main_Page')
+
+    # 「今日のできごと」セクションの取得
+    # このIDはページによって異なる場合があるため、適宜調整が必要
+    events = driver.find_element(By.ID, 'mp-otd')
+    
+    # セクションのテキストを表示
+    print(events.text)
+
+finally:
+    # ブラウザを閉じる
+    driver.quit()
