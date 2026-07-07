@@ -1,0 +1,27 @@
+import requests
+from bs4 import BeautifulSoup
+import csv
+
+
+# ウェブページのHTMLを取得
+url ='http://quotes.toscrape.com/'
+response = requests.get(url)
+soap = BeautifulSoup(response.text, 'html.parser')
+
+#引用と著者を取得
+#divという箱のclass名quoteを探す。
+quotes = soap.find_all("div", class_="quote")
+
+# CSVファイルにデータを書き込む
+# 'w'で「書き込みモード」を指定
+# newline=''は、行末に余分な空行を入れないようにするため
+with open(r"C:\Users\Ryutaro\python\exicise\quotes.csv", "w", newline="", encoding="utf-8-sig") as file:
+    writer = csv.writer(file)
+    #最初の行に「Quote」「Author」のヘッダーを書き込み
+    writer.writerow(["Quote", "Author"])
+    for quote in quotes:
+        text = quote.find("span", class_="text").get_text()
+        author = quote.find("small", class_="author").get_text()
+        writer.writerow([text, author])
+
+print("Quotes have been written to quotes1.csv")
