@@ -31,7 +31,7 @@ html = driver.page_source
 # ドライバを終了
 driver.quit()
 
-##スクロールと抽出
+##-------スクロールと抽出-----------------##
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
