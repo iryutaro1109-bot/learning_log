@@ -1,0 +1,36 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+import time
+
+# Seleniumの準備
+service = Service(ChromeDriverManager().install())
+driver = webdriver.Chrome(service=service)
+
+try:
+    # ページを開く
+    driver.get('https://qiita.com/advent-calendar/2016/crawler')
+    time.sleep(3) # 最初の読み込み待ち
+    
+    # =================【ここからスクロール処理】=================
+    # 3回に分けて、少しずつ下にスクロールする（人間がスクロールしているように見せる）
+    for i in range(3):
+        # JavaScriptを実行して、現在の位置から1000ピクセル下にスクロール
+        driver.execute_script("window.scrollBy(0, 1000);")
+        time.sleep(1) # スクロール後の読み込み待ち（1秒）
+    # =========================================================
+
+    # 記事のURLリンクをすべて探して、最初の25個に絞る
+    items = driver.find_elements(By.CSS_SELECTOR, "a[href*='/items/']")[:25]
+    
+    # 番号付きで表示
+    for index, a in enumerate(items, 1):
+        url = a.get_attribute('href')
+        title = a.text
+        
+        if title:
+            print(f"{index}日目: {title} ({url})")
+
+finally:
+    driver.quit()
